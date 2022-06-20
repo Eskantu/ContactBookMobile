@@ -8,6 +8,7 @@ using Xamarin.Essentials;
 
 using ContactBookMobile.Models;
 using ContactBookMobile.Services;
+using System.Diagnostics;
 
 namespace ContactBookMobile.ViewModels
 {
@@ -17,13 +18,14 @@ namespace ContactBookMobile.ViewModels
         {
             // Register for connectivity changes, be sure to unsubscribe when finished
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
-            IsNetworkConnect = Connectivity.NetworkAccess != NetworkAccess.Unknown && Connectivity.NetworkAccess != NetworkAccess.None;
+            IsNetworkConnect = Connectivity.NetworkAccess != NetworkAccess.ConstrainedInternet && Connectivity.NetworkAccess != NetworkAccess.Unknown && Connectivity.NetworkAccess != NetworkAccess.None;
+            Debug.WriteLine($"Netwoek state: {Connectivity.NetworkAccess}");
         }
 
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            IsNetworkConnect = e.NetworkAccess != NetworkAccess.Unknown && e.NetworkAccess != NetworkAccess.None;
-
+            IsNetworkConnect = e.NetworkAccess != NetworkAccess.ConstrainedInternet && e.NetworkAccess != NetworkAccess.Unknown && e.NetworkAccess != NetworkAccess.None ;
+            Debug.WriteLine($"Netwoek state: {e.NetworkAccess}");
 
         }
 
