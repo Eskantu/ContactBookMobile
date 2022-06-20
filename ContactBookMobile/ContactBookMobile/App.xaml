@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:ContactBookMobile.Helpers.Converters"
+             mc:Ignorable="d"
+             x:Class="ContactBookMobile.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Converters-->
+            <converters:BooleanReverseValue x:Key="BooleanReverseValue"/>
+            <converters:ObjectToString x:Key="ObjectToString"/>
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            <Style TargetType="Label" x:Key="Icon">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="Gray"/>
+            </Style>
+            <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+                <On Platform="ios" Value="Material Icons"/>
+                <On Platform="Android" Value="MaterialIcons-Regular.ttf#Material Icons"/>
+            </OnPlatform>
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</Application>
