@@ -24,7 +24,7 @@ namespace ContactBookMobile.ViewModels
 
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            IsNetworkConnect = e.NetworkAccess != NetworkAccess.ConstrainedInternet && e.NetworkAccess != NetworkAccess.Unknown && e.NetworkAccess != NetworkAccess.None ;
+            IsNetworkConnect = e.NetworkAccess != NetworkAccess.ConstrainedInternet && e.NetworkAccess != NetworkAccess.Unknown && e.NetworkAccess != NetworkAccess.None;
             Debug.WriteLine($"Netwoek state: {e.NetworkAccess}");
 
         }
