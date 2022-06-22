@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              xmlns:helpers="clr-namespace:ContactBookMobile.Helpers"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:viewmodels="clr-namespace:ContactBookMobile.ViewModels" x:DataType="viewmodels:LoginViewModel"
-             x:Class="ContactBookMobile.Views.LoginView">
+             x:Class="ContactBookMobile.Views.LoginView" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout Spacing="0" BackgroundColor="#2f4729" Opacity="0.7">
             <Frame BackgroundColor="Red" IsVisible="{Binding IsNetworkConnect, Converter={StaticResource BooleanReverseValue}}">
@@ -36,7 +36,7 @@
                 </Grid>
                 <Button IsEnabled="{Binding IsNetworkConnect}" Command="{Binding LoginCommand}" Grid.Row="2" BackgroundColor="Green" Text="LOGIN" TextColor="White" FontAttributes="Bold" HorizontalOptions="EndAndExpand"   />
             </Grid>
-            <Button xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="12" xct:ShadowEffect.Opacity="1" Text="SING IN" BackgroundColor="Red" FontAttributes="Bold" TextColor="White" WidthRequest="300" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Button Command="{Binding SignInCommand}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="12" xct:ShadowEffect.Opacity="1" Text="SING IN" BackgroundColor="Red" FontAttributes="Bold" TextColor="White" WidthRequest="300" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
