@@ -5,10 +5,9 @@
              x:Name="this"
              x:Class="ContactBookMobile.Views.Componentes.CardComponentView">
     <ContentView.Content>
-        <Grid xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="12" Padding="5" BackgroundColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="CenterAndExpand">
+        <Grid xct:ShadowEffect.Color="Black" Margin="0" Padding="0" xct:ShadowEffect.OffsetY="12" BackgroundColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="CenterAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition  Height="50"/>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <BoxView Margin="-5" Grid.Row="0" BackgroundColor="{Binding CardTitleColor, Source={x:Reference this}}" />
