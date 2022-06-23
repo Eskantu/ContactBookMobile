@@ -47,10 +47,7 @@ namespace ContactBookMobile.ViewModels
 
         private void OnLogin()
         {
-            if (usuarioManager.Login(new LoginRequest() { Password = Password, UserName = Password }) != null)
-                Console.WriteLine("Login succes");
-            else
-                Console.WriteLine($"Login faild: {usuarioManager.Errror}");
+
         }
 
         private async Task OnPushSingInView() 
