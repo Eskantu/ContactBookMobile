@@ -22,8 +22,8 @@ namespace ContactBookMobile.ViewModels
         {
             this.usuarioManager = usuarioManager;
             this.navigation = navigation;
-            LoginCommand = new Command(() => OnLogin());
-            SignInCommand = new Command(async () => await  OnPushSingInView());
+            LoginCommand = new Command(async () => await OnLogin());
+            SignInCommand = new Command(async () => await OnPushSingInView());
         }
         public ICommand LoginCommand { get; set; }
         public ICommand SignInCommand { get; set; }
@@ -45,14 +45,14 @@ namespace ContactBookMobile.ViewModels
 
 
 
-        private void OnLogin()
+        private async Task OnLogin()
         {
-
+            await navigation.NavigateModalAsync("MenuView");
         }
 
-        private async Task OnPushSingInView() 
+        private async Task OnPushSingInView()
         {
-           await navigation.NavigateAsync("SignIn", true);
+            await navigation.NavigateAsync("SignIn");
         }
 
     }
