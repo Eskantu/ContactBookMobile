@@ -1,12 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ContactBookMobile.Views.SignInView">
+             x:Class="ContactBookMobile.Views.SignInView"
+             xmlns:form="clr-namespace:ContactBookMobile.Views.Formularios"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:components="clr-namespace:ContactBookMobile.Views.Componentes"
+             NavigationPage.HasNavigationBar="False"
+              >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Sign In View"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="#8C7B88" Opacity="0.8">
+            
+        <components:CardComponentView HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  CardTitle="SIGN IN" CardTitleColor="Purple">
+            <components:CardComponentView.CardBody>
+                <StackLayout>
+                    <form:UserFormView/>
+                </StackLayout>
+            </components:CardComponentView.CardBody>
+        </components:CardComponentView>
+            <Button Margin="0,-150,0,0" Command="{Binding BackLoginCommand}" xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="12" xct:ShadowEffect.Opacity="1" Text="LOGIN" BackgroundColor="Red" FontAttributes="Bold" TextColor="White" WidthRequest="300" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
+        
+
     </ContentPage.Content>
 </ContentPage>
