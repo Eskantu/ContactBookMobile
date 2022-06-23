@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              xmlns:helpers="clr-namespace:ContactBookMobile.Helpers"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:viewmodels="clr-namespace:ContactBookMobile.ViewModels" x:DataType="viewmodels:LoginViewModel"
-             x:Class="ContactBookMobile.Views.LoginView" NavigationPage.HasNavigationBar="False">
+             x:Class="ContactBookMobile.Views.LoginView" Style="{StaticResource NoNavigationBar}">
     <ContentPage.Content>
         <StackLayout  Spacing="0" BackgroundColor="#2f4729" Opacity="0.7">
             <Frame BackgroundColor="Red" IsVisible="{Binding IsNetworkConnect, Converter={StaticResource BooleanReverseValue}}">
