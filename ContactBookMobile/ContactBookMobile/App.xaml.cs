@@ -10,6 +10,7 @@ using ContactBookMobile.ViewModels;
 using ContactBookMobile.Services.Intarfaces;
 using ContactBookMobile.Services.Navigation;
 using ContactBookMobile.Helpers;
+using ContactBookMobile.Views.Menu;
 
 namespace ContactBookMobile
 {
@@ -67,6 +68,8 @@ namespace ContactBookMobile
             NavigationManager navigationServices = provider.GetRequiredService<INavigationService>() as NavigationManager;
             navigationServices.Configure("Login", typeof(LoginView));
             navigationServices.Configure("SignIn", typeof(SignInView));
+            navigationServices.Configure("UsersView", typeof(UsersView));
+            navigationServices.Configure("MenuView", typeof(MenuView));
             return navigationServices.SetRootPage("Login");
         }
 
