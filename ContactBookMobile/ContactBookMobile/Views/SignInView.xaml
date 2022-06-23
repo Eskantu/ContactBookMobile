@@ -5,7 +5,7 @@
              xmlns:form="clr-namespace:ContactBookMobile.Views.Formularios"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:components="clr-namespace:ContactBookMobile.Views.Componentes"
-             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource NoNavigationBar}"
               >
     <ContentPage.Content>
         <StackLayout BackgroundColor="#8C7B88" Opacity="0.8">
