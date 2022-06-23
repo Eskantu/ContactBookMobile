@@ -56,6 +56,7 @@ namespace ContactBookMobile
             services.AddTransient<ItemsViewModel>();
             services.AddTransient<AboutViewModel>();
             services.AddTransient<LoginViewModel>();
+            services.AddTransient<SignInViewModel>();
             ServiceProvider = services.BuildServiceProvider();
 
         }
