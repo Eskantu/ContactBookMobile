@@ -54,14 +54,24 @@ namespace ContactBookMobile.Views.Menu
             #endregion
         }
 
+        Label latestItem=new Label();
         private void MenuItemsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //MenuItemModel item = e.CurrentSelection[0] as MenuItemModel;
-            //DisplayAlert("", item.Modulo, "Ok");
+            //TapGestureRecognizer_Tapped(latestItem, new EventArgs());
         }
-
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            Label label = sender as Label;
+            if (latestItem != null && latestItem != label)
+            {
+                label.BackgroundColor = Color.Gray;
+                latestItem.BackgroundColor = Color.Transparent;
+            }
+            else
+            {
+                label.BackgroundColor = Color.Gray;
+            }
+            latestItem = label;
         }
     }
 }

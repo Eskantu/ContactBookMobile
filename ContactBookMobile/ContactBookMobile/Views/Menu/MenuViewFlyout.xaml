@@ -52,7 +52,7 @@
                                     <RowDefinition Height="3*"/>
                                     <RowDefinition Height="3*"/>
                                 </Grid.RowDefinitions>
-                                <Label Margin="0" Grid.Row="0" HeightRequest="50"  VerticalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="15">
+                                <Label BackgroundColor="Transparent" Margin="0" Grid.Row="0" HeightRequest="50"  VerticalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="15">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                     </Label.GestureRecognizers>
@@ -64,7 +64,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Margin="0" HeightRequest="50" Grid.Row="1" VerticalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="15">
+                                <Label BackgroundColor="Transparent" Margin="0" HeightRequest="50" Grid.Row="1" VerticalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="15">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                     </Label.GestureRecognizers>
@@ -76,9 +76,9 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Margin="0" HeightRequest="50" Grid.Row="2" VerticalOptions="CenterAndExpand"  TextColor="White" FontAttributes="Bold" FontSize="15">
+                                <Label BackgroundColor="Transparent" Margin="0" HeightRequest="50" Grid.Row="2" VerticalOptions="CenterAndExpand"  TextColor="White" FontAttributes="Bold" FontSize="15">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                        <TapGestureRecognizer CommandParameter="TipoContacto" Tapped="TapGestureRecognizer_Tapped"/>
                                     </Label.GestureRecognizers>
                                     <Label.FormattedText>
                                         <FormattedString>
