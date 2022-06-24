@@ -1,45 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ContactBookMobile.Views.Menu.MenuViewFlyout"
+             xmlns:helpers="clr-namespace:ContactBookMobile.Helpers"
              Title="Flyout">
-  <StackLayout>
-    <ListView x:Name="MenuItemsListView"
-              SeparatorVisibility="None"
-              HasUnevenRows="true"
+    <StackLayout Padding="10,20,0,0" BackgroundColor="#424242">
+        <CollectionView SelectionMode="Single" SelectionChanged="MenuItemsListView_SelectionChanged" BackgroundColor="Transparent" x:Name="MenuItemsListView"
               ItemsSource="{Binding MenuItems}">
-      <ListView.Header>
-                <Grid BackgroundColor="#424242">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-          </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
-          </Grid.RowDefinitions>
-          <Label
-              Grid.Column="1"
-              Grid.Row="2"
-              Text="AppName"
-              Style="{DynamicResource SubtitleStyle}"/>
-        </Grid>
-      </ListView.Header>
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-              <Label VerticalOptions="FillAndExpand" 
-                    VerticalTextAlignment="Center" 
-                    Text="{Binding Title}" 
-                    FontSize="24"/>
-            </StackLayout>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-  </StackLayout>
+            <CollectionView.Header>
+                <StackLayout >
+                    <Label Text="Mario Escalante" TextColor="White" FontAttributes="Bold" FontSize="Title"/>
+                    <Label Text="eskantu" FontAttributes="Italic" TextColor="White"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"  ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="gray" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <behaviors:Expander IsEnabled="{Binding HasChildrens}">
+                            <behaviors:Expander.Header>
+                                <Grid HeightRequest="50">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label  VerticalOptions="CenterAndExpand" Grid.Row="0" TextColor="White"  FontSize="18">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontFamily="{StaticResource MaterialFontFamily}" FontSize="20" Text="{Binding Icon}"></Span>
+                                            <Span Text="      "></Span>
+                                            <Span Text="{Binding Modulo}"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                </Grid>
+                            </behaviors:Expander.Header>
+                            <Grid Margin="30,0,0,0" RowSpacing="0" HorizontalOptions="FillAndExpand" HeightRequest="150" BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="3*"/>
+                                </Grid.RowDefinitions>
+                                <Label Margin="0" Grid.Row="0" HeightRequest="50"  VerticalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="15">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontFamily="{StaticResource MaterialFontFamily}" FontSize="20" Text="{x:Static helpers:IconFont.List_alt}"></Span>
+                                            <Span Text="      "></Span>
+                                            <Span Text="Contactos"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Margin="0" HeightRequest="50" Grid.Row="1" VerticalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="15">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontFamily="{StaticResource MaterialFontFamily}" FontSize="20" Text="{x:Static helpers:IconFont.Favorite}"></Span>
+                                            <Span Text="      "></Span>
+                                            <Span Text="Estado civil"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Margin="0" HeightRequest="50" Grid.Row="2" VerticalOptions="CenterAndExpand"  TextColor="White" FontAttributes="Bold" FontSize="15">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontFamily="{StaticResource MaterialFontFamily}" FontSize="20" Text="{x:Static helpers:IconFont.Connect_without_contact}"></Span>
+                                            <Span Text="      "></Span>
+                                            <Span Text="Tipo contacto"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </behaviors:Expander>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>

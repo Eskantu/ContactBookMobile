@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ContactBookMobile.Helpers.UIModels;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,7 +17,7 @@ namespace ContactBookMobile.Views.Menu
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuViewFlyout : ContentPage
     {
-        public ListView ListView;
+        public CollectionView ListView;
 
         public MenuViewFlyout()
         {
@@ -27,17 +29,16 @@ namespace ContactBookMobile.Views.Menu
 
         class MenuViewFlyoutViewModel : INotifyPropertyChanged
         {
-            public ObservableCollection<MenuViewFlyoutMenuItem> MenuItems { get; set; }
+            public ObservableCollection<MenuItemModel> MenuItems { get; set; }
 
             public MenuViewFlyoutViewModel()
             {
-                MenuItems = new ObservableCollection<MenuViewFlyoutMenuItem>(new[]
+                MenuItems = new ObservableCollection<MenuItemModel>(new[]
                 {
-                    new MenuViewFlyoutMenuItem { Id = 0, Title = "Page 1" },
-                    new MenuViewFlyoutMenuItem { Id = 1, Title = "Page 2" },
-                    new MenuViewFlyoutMenuItem { Id = 2, Title = "Page 3" },
-                    new MenuViewFlyoutMenuItem { Id = 3, Title = "Page 4" },
-                    new MenuViewFlyoutMenuItem { Id = 4, Title = "Page 5" },
+                    new MenuItemModel(){ HasChildrens=false, Modulo="Dashboard", Icon="\ue871" },
+                    new MenuItemModel(){ HasChildrens=false, Modulo="Usuarios", Icon="\ue853" },
+                    new MenuItemModel(){ HasChildrens=true, Modulo="Contact Book", Icon="\uf22e" },
+                    new MenuItemModel(){ HasChildrens=false, Modulo="Upload file", Icon="\ue2c6" },
                 });
             }
 
@@ -51,6 +52,16 @@ namespace ContactBookMobile.Views.Menu
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             #endregion
+        }
+
+        private void MenuItemsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //MenuItemModel item = e.CurrentSelection[0] as MenuItemModel;
+            //DisplayAlert("", item.Modulo, "Ok");
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
         }
     }
 }
