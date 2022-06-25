@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Reference Include="ContactBook.Core">
-      <HintPath>..\..\..\..\Desktop\ContactBook.Core.dll</HintPath>
+      <HintPath>..\..\ContactBook\Core\Examen.Core\bin\Debug\netcoreapp3.1\ContactBook.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
 
