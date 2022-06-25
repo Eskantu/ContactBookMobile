@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactBookMobile.Views.Formularios.UserFormView">
+  <ContentView.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Entry Placeholder="nombre" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
+                <Entry Placeholder="apellido paterno" Grid.Row="1" Grid.Column="0"></Entry>
+                <Entry Placeholder="apellido materno" Grid.Row="1" Grid.Column="1"></Entry>
+                <Entry Placeholder="username" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
+                <Entry Placeholder="email" Keyboard="Email" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
+                <Entry Placeholder="password" IsPassword="True" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
+            <Entry Placeholder="repeat password" IsPassword="True" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
+            <Button Grid.Row="6" Grid.Column="1" BackgroundColor="Green" Text="SIGN IN" TextColor="White" FontAttributes="Bold" HorizontalOptions="EndAndExpand"   />
+            </Grid>
+  </ContentView.Content>
+</ContentView>

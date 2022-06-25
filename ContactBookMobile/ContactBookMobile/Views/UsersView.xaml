@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="ContactBookMobile.Views.UsersView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="0" HasShadow="False">
+            <Frame.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#51148a" Offset="0.1"></GradientStop>
+                    <GradientStop Color="#1d7036" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+            <CollectionView BackgroundColor="Transparent" 
+            x:Name="MyListView"
+            ItemsSource="{Binding Items}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <!--Built in Cells-->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <behaviors:Expander>
+                            <behaviors:Expander.Header>
+                                <Grid BackgroundColor="{x:DynamicResource NavigationPrimary}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <BoxView BackgroundColor="{Binding IsActive, Converter={StaticResource IntToColor}}" 
+                                 WidthRequest="1" 
+                                 HeightRequest="1" 
+                                 Grid.Column="0" 
+                                 Grid.Row="0" 
+                                 Grid.RowSpan="2"/>
+                                    <Label Padding="0,10,0,0" TextColor="White" Grid.Row="0" Grid.Column="1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Nombre}"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding ApellidoPaterno}"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding ApellidoMaterno}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Padding="0,0,0,10" FontAttributes="Italic" TextColor="White" Grid.Column="1" Grid.Row="1" Text="{Binding UserName}"></Label>
+                                </Grid>
+                            </behaviors:Expander.Header>
+                            <Grid BackgroundColor="{x:DynamicResource NavigationPrimary}" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <BoxView BackgroundColor="{Binding IsActive, Converter={StaticResource IntToColor}}" 
+                                 WidthRequest="1" 
+                                 HeightRequest="1" 
+                                 Grid.Column="0" 
+                                 Grid.Row="0" 
+                                 Grid.RowSpan="3"/>
+                                <Label  TextColor="White" Grid.Row="0" Grid.Column="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontAttributes="Bold" Text="Modulos"/>
+                                            <Span/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label TextColor="White" Grid.Row="1" Grid.Column="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontAttributes="Bold" Text="Email"/>
+                                            <Span FontAttributes="Bold" Text=" "/>
+                                            <Span FontAttributes="Italic" Text="{Binding Email}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Padding="0,0,0,10" TextColor="White" Grid.Row="2" Grid.Column="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontAttributes="Bold" Text="Creado el"/>
+                                            <Span FontAttributes="Bold" Text=" "/>
+                                            <Span FontAttributes="Italic" Text="{Binding FechaCreacion, Converter={StaticResource DateTimeToString}}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </behaviors:Expander>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <!--Custom View Cells-->
+                <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    -->
+            </CollectionView>
+        </Frame>
+        <Button xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="12"
+                Grid.Row="0" 
+                Text="+"
+                FontAttributes="Bold"
+                FontSize="Large"
+                BackgroundColor="Green" 
+                BorderRadius="50" 
+                TextColor="White" 
+                HorizontalOptions="End" 
+                WidthRequest="60" 
+                HeightRequest="60" 
+                Margin="0,0,20,22" 
+                VerticalOptions="End"></Button>
+    </Grid>
+</ContentPage>
+    

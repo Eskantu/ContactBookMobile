@@ -12,15 +12,22 @@
             <!--Converters-->
             <converters:BooleanReverseValue x:Key="BooleanReverseValue"/>
             <converters:ObjectToString x:Key="ObjectToString"/>
+            <converters:DateTimeToString x:Key="DateTimeToString"/>
+            <converters:IntToColor x:Key="IntToColor"/>
             <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="NavigationPrimary">#212121</Color>
+            <Color x:Key="NavigationSecondary">#4a4a4a</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+            <Style TargetType="NavigationPage" x:Key="NoNavigationBar">
+                <Setter Property="HasNavigationBar" Value="False"></Setter>
+            </Style>
             <Style TargetType="Label" x:Key="Icon">
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
             <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
                 <On Platform="ios" Value="Material Icons"/>
