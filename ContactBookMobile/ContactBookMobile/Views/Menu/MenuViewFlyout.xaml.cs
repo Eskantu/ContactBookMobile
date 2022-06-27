@@ -1,4 +1,5 @@
 ﻿using ContactBookMobile.Helpers.UIModels;
+using ContactBookMobile.ViewModels.Menu;
 
 using System;
 using System.Collections.Generic;
@@ -18,49 +19,32 @@ namespace ContactBookMobile.Views.Menu
     public partial class MenuViewFlyout : ContentPage
     {
         public CollectionView ListView;
-
+        readonly MenuViewFlyoutViewModel context;
         public MenuViewFlyout()
         {
             InitializeComponent();
 
-            BindingContext = new MenuViewFlyoutViewModel();
-            ListView = MenuItemsListView;
+            context = (MenuViewFlyoutViewModel)App.GetViewModel<MenuViewFlyoutViewModel>();
+            BindingContext = context;
         }
 
-        class MenuViewFlyoutViewModel : INotifyPropertyChanged
-        {
-            public ObservableCollection<MenuItemModel> MenuItems { get; set; }
 
-            public MenuViewFlyoutViewModel()
-            {
-                MenuItems = new ObservableCollection<MenuItemModel>(new[]
-                {
-                    new MenuItemModel(){ HasChildrens=false, Modulo="Dashboard", Icon="\ue871" },
-                    new MenuItemModel(){ HasChildrens=false, Modulo="Usuarios", Icon="\ue853" },
-                    new MenuItemModel(){ HasChildrens=true, Modulo="Contact Book", Icon="\uf22e" },
-                    new MenuItemModel(){ HasChildrens=false, Modulo="Upload file", Icon="\ue2c6" },
-                });
-            }
-
-            #region INotifyPropertyChanged Implementation
-            public event PropertyChangedEventHandler PropertyChanged;
-            void OnPropertyChanged([CallerMemberName] string propertyName = "")
-            {
-                if (PropertyChanged == null)
-                    return;
-
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-            #endregion
-        }
-
-        Label latestItem=new Label();
+        Label latestItem = new Label();
         private void MenuItemsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //TapGestureRecognizer_Tapped(latestItem, new EventArgs());
+            if (latestItem != null)
+            {
+                latestItem.BackgroundColor = Color.Transparent;
+            }
+            if (e.CurrentSelection.Count > 0)
+            {
+                MenuItemModel item = e.CurrentSelection[0] as MenuItemModel;
+                ChangePageOnFlyoutMenu(item.Page);
+            }
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            MenuItemsListView.SelectedItem = null;
             Label label = sender as Label;
             if (latestItem != null && latestItem != label)
             {
@@ -72,6 +56,15 @@ namespace ContactBookMobile.Views.Menu
                 label.BackgroundColor = Color.Gray;
             }
             latestItem = label;
+            TappedEventArgs tappedArgs = e as TappedEventArgs;
+            //await context.NavigateToPage(tappedArgs.Parameter as string);
+            ChangePageOnFlyoutMenu(tappedArgs.Parameter as string);
+
+        }
+
+        private void ChangePageOnFlyoutMenu(string page)
+        {
+            MessagingCenter.Send<MenuViewFlyout, string>(this, "Detail", page);
         }
     }
 }

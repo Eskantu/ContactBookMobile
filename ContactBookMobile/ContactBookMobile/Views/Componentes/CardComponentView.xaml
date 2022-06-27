@@ -5,14 +5,14 @@
              x:Name="this"
              x:Class="ContactBookMobile.Views.Componentes.CardComponentView">
     <ContentView.Content>
-        <Grid xct:ShadowEffect.Color="Black" Margin="0" Padding="0" xct:ShadowEffect.OffsetY="12" BackgroundColor="White" HorizontalOptions="CenterAndExpand" WidthRequest="300" VerticalOptions="CenterAndExpand">
+        <Grid xct:ShadowEffect.Color="Black" Margin="0" RowSpacing="0" Padding="0" xct:ShadowEffect.OffsetY="12" HorizontalOptions="CenterAndExpand" WidthRequest="{Binding CardWidth,Source={x:Reference this}}" VerticalOptions="CenterAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition  Height="50"/>
+                <RowDefinition  Height="{Binding IsVisibleTitle, Source={x:Reference this}, Converter={StaticResource TitleHeight}}"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <BoxView Margin="-5" Grid.Row="0" BackgroundColor="{Binding CardTitleColor, Source={x:Reference this}}" />
-            <Label Grid.Row="0" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="White" Text="{Binding CardTitle, Source={x:Reference this}}"></Label>
-            <Frame HasShadow="False" Grid.Row="1" Content="{Binding CardBody,Source={x:Reference this}}"/>
+            <BoxView WidthRequest="{Binding CardWidth,Source={x:Reference this}}" IsVisible="{Binding IsVisibleTitle, Source={x:Reference this}}" Grid.Row="0" BackgroundColor="{Binding CardTitleColor, Source={x:Reference this}}" />
+            <Label Grid.Row="0" IsVisible="{Binding IsVisibleTitle, Source={x:Reference this}}" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" TextColor="White" Text="{Binding CardTitle, Source={x:Reference this}}"></Label>
+            <Frame BackgroundColor="{Binding CardColor,Source={x:Reference this}}" HasShadow="False" Grid.Row="1" Content="{Binding CardBody,Source={x:Reference this}}"/>
         </Grid>
     </ContentView.Content>
 </ContentView>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ContactBookMobile.Views.Componentes"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="ContactBookMobile.Views.DashboardView">
+    <ContentPage.Content>
+        <Frame HasShadow="False">
+            <Frame.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#5F6F72" Offset="0.1"/>
+                    <GradientStop Color="#415e56" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+        <StackLayout>
+            <components:CardComponentView HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CardWidth="350" IsVisibleTitle="False" CardColor="#98A9AD" >
+            <components:CardComponentView.CardBody>
+                <StackLayout>
+                    <Label LineBreakMode="MiddleTruncation" MaxLines="1" TextColor="White" FontSize="Large" FontAttributes="Bold" Text="Bienvenido a ContactBook"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+            </components:CardComponentView.CardBody>
+        </components:CardComponentView>
+            <Grid Margin="0,-500,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="30,0,30,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Button HeightRequest="40" TextColor="White" xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="12" BackgroundColor="#5F6F72" Text="NEW PROJECT" Grid.Column="0"></Button>
+                    <Button HeightRequest="40" TextColor="White" xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="12" BackgroundColor="#5F6F72" Text="SEARCH PROJECT" Grid.Column="1"></Button>
+            </Grid>
+        </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

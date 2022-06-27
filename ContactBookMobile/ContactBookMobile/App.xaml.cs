@@ -11,6 +11,8 @@ using ContactBookMobile.Services.Intarfaces;
 using ContactBookMobile.Services.Navigation;
 using ContactBookMobile.Helpers;
 using ContactBookMobile.Views.Menu;
+using ContactBookMobile.ViewModels.Menu;
+using ContactBookMobile.Views.ContactBook;
 
 namespace ContactBookMobile
 {
@@ -58,6 +60,7 @@ namespace ContactBookMobile
             services.AddTransient<AboutViewModel>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<SignInViewModel>();
+            services.AddTransient<MenuViewFlyoutViewModel>();
             ServiceProvider = services.BuildServiceProvider();
 
         }
@@ -68,7 +71,6 @@ namespace ContactBookMobile
             NavigationManager navigationServices = provider.GetRequiredService<INavigationService>() as NavigationManager;
             navigationServices.Configure("Login", typeof(LoginView));
             navigationServices.Configure("SignIn", typeof(SignInView));
-            navigationServices.Configure("UsersView", typeof(UsersView));
             navigationServices.Configure("MenuView", typeof(MenuView));
             return navigationServices.SetRootPage("Login");
         }

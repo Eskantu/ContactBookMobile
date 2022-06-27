@@ -14,8 +14,7 @@ namespace ContactBookMobile.ViewModels
         public AboutViewModel(IUsuarioManager usuarioManager, IAppInfoServices infoServices)
         {
             Title = "About";
-            OpenWebCommand = new Command(async () => usuarioManager.ObtenerTodos());
-            
+            OpenWebCommand = new Command( () => usuarioManager.ObtenerTodos());
         }
 
         public ICommand OpenWebCommand { get; }
