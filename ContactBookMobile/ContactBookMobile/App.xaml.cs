@@ -4,8 +4,6 @@ using Xamarin.Forms.Xaml;
 using ContactBookMobile.Services;
 using ContactBookMobile.Views;
 using Microsoft.Extensions.DependencyInjection;
-using ContactBook.Core.COMMON.Interfaces;
-using ContactBookMobile.Services.Managers;
 using ContactBookMobile.ViewModels;
 using ContactBookMobile.Services.Intarfaces;
 using ContactBookMobile.Services.Navigation;
@@ -13,6 +11,7 @@ using ContactBookMobile.Helpers;
 using ContactBookMobile.Views.Menu;
 using ContactBookMobile.ViewModels.Menu;
 using ContactBookMobile.Views.ContactBook;
+using ContactBook.Core.COMMON.Interfaces;
 
 namespace ContactBookMobile
 {
@@ -48,12 +47,13 @@ namespace ContactBookMobile
 
             //servcios para el proyecto principal
             services.AddSingleton<IToken, Token>();
-            services.AddSingleton<INavigationService, NavigationManager>();
+            services.AddSingleton<IError, Error>();
             var provider = services.BuildServiceProvider();
             var tokenService = provider.GetRequiredService<IToken>();
-
-            FactoryManager factoryManager = new FactoryManager(tokenService);
+            var errorService = provider.GetRequiredService<IError>();
+            FactoryManager factoryManager = new FactoryManager(tokenService,errorService);
             services.AddTransient<IUsuarioManager>(x => factoryManager.GetUsuarioManager());
+            services.AddSingleton<INavigationService, NavigationManager>();
 
             //Add viewModels
             services.AddTransient<ItemsViewModel>();

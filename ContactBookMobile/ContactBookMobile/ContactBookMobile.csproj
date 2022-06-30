@@ -22,12 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ContactBook.Core">
-      <HintPath>..\..\..\ContactBook\Core\Examen.Core\bin\Debug\netcoreapp3.1\ContactBook.Core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Views\Componentes\CardComponentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -76,8 +70,7 @@
 
   <ItemGroup>
     <Reference Include="ContactBook.Core">
-      <HintPath>..\..\..\..\..\Desktop\ContactBook.Core.dll</HintPath>
-      <Private>true</Private>
+      <HintPath>..\..\BackEnd\ContactBook.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

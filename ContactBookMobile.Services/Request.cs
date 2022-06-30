@@ -15,9 +15,12 @@ namespace ContactBookMobile.Services
     {
         private readonly HttpClient client;
         private readonly string _endPoint;
-        public Request(string token, string endPoint)
+        private readonly IError error;
+
+        public Request(string token, string endPoint,IError error)
         {
             _endPoint = endPoint;
+            this.error = error;
             client = new HttpClient();
             client.BaseAddress = new Uri(Config.ServerAPIAddress);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -70,16 +73,25 @@ namespace ContactBookMobile.Services
 
         public async Task<string> Login(LoginRequest request)
         {
-            HttpResponseMessage message = client.PostAsync("Authentication/requestToken", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json")).Result;
-            if (message.IsSuccessStatusCode)
+            try
             {
-                return await message.Content.ReadAsStringAsync();
+                HttpResponseMessage message = client.PostAsync("Authentication/requestToken", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json")).Result;
+                if (message.IsSuccessStatusCode)
+                {
+                    return await message.Content.ReadAsStringAsync();
 
+                }
+                else
+                {
+                    Error = message.ReasonPhrase;
+                    throw new RequestException() { ErrorCode = message.StatusCode, Mensaje = Error };
+                }
             }
-            else 
+            catch (RequestException exception)
             {
-                Error = message.ReasonPhrase;
+                error.OnError(exception);
                 return "";
+                throw;
             }
         }
 
