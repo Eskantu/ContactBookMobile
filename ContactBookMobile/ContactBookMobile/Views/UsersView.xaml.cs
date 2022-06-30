@@ -52,5 +52,10 @@ namespace ContactBookMobile.Views
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
+
+        private async void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+        {
+            await DisplayAlert("item swiped", $"Swiped to: {e.Direction}", "OK");
+        }
     }
 }
