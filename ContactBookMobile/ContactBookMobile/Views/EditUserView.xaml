@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Forms="clr-namespace:ContactBookMobile.Views.Formularios"
+                          xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:components="clr-namespace:ContactBookMobile.Views.Componentes"
+             x:Class="ContactBookMobile.Views.EditUserView" Title="Crear/Editar Usuario">
+    <ContentPage.Content>
+        <Frame>
+            <Frame.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#51148a" Offset="0.1"></GradientStop>
+                    <GradientStop Color="#1d7036" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+            <StackLayout>
+                <components:CardComponentView HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" IsVisibleTitle="False">
+                    <components:CardComponentView.CardBody>
+                        <StackLayout>
+                            <Forms:UserFormView IsExpandedButton="True"/>
+                        </StackLayout>
+                    </components:CardComponentView.CardBody>
+                </components:CardComponentView>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

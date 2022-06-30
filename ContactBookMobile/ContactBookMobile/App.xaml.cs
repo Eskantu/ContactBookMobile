@@ -61,6 +61,7 @@ namespace ContactBookMobile
             services.AddTransient<LoginViewModel>();
             services.AddTransient<SignInViewModel>();
             services.AddTransient<MenuViewFlyoutViewModel>();
+            services.AddTransient<UsersViewModel>();
             ServiceProvider = services.BuildServiceProvider();
 
         }
@@ -72,6 +73,7 @@ namespace ContactBookMobile
             navigationServices.Configure("Login", typeof(LoginView));
             navigationServices.Configure("SignIn", typeof(SignInView));
             navigationServices.Configure("MenuView", typeof(MenuView));
+            navigationServices.Configure("EditAddUser", typeof(EditUserView));
             return navigationServices.SetRootPage("Login");
         }
 

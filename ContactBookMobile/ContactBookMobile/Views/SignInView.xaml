@@ -15,7 +15,7 @@
             <components:CardComponentView HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  CardTitle="SIGN IN" CardTitleColor="Purple">
             <components:CardComponentView.CardBody>
                 <StackLayout>
-                    <form:UserFormView/>
+                    <form:UserFormView IsExpandedButton="False"/>
                 </StackLayout>
             </components:CardComponentView.CardBody>
         </components:CardComponentView>
