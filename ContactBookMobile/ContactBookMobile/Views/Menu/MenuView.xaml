@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContactBookMobile.Views.Menu.MenuView"
             xmlns:views="clr-namespace:ContactBookMobile.Views"
-             xmlns:pages="clr-namespace:ContactBookMobile.Views.Menu">
+             xmlns:pages="clr-namespace:ContactBookMobile.Views.Menu" Style="{StaticResource NoNavigationBar}">
   <FlyoutPage.Flyout>
     <pages:MenuViewFlyout x:Name="FlyoutPage" />
   </FlyoutPage.Flyout>

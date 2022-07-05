@@ -9,6 +9,7 @@ using ContactBookMobile.Services.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -59,14 +60,18 @@ namespace ContactBookMobile.ViewModels
 
         private async Task OnLogin()
         {
-                await navigation.NavigateModalAsync("MenuView");
-            //if (usuarioManager.Login(new LoginRequest() { Password = password, UserName = UserName }) is Usuario)
-            //{
-            //}
-            //else
-            //{
+            IsBusy = true;
+            if (usuarioManager.Login(new LoginRequest() { Password = password, UserName = UserName }) is Usuario)
+            {
+                await navigation.NavigateAsync("MenuView");
+            }
+            else
+            {
 
-            //}
+            }
+            Password = "";
+            UserName = "";
+            IsBusy = false;
         }
 
         private async Task OnPushSingInView()
