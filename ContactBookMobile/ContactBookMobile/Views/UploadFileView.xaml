@@ -1,12 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:helpers="clr-namespace:ContactBookMobile.Helpers"
+              xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ContactBookMobile.Views.UploadFileView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to upload file"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame Grid.Row="0" HasShadow="False">
+                <Frame.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#4c2050" Offset="0.1"></GradientStop>
+                        <GradientStop Color="#808139" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <CollectionView ItemsSource="{Binding Files}" BackgroundColor="Transparent">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView Threshold="100">
+                                <SwipeView.RightItems>
+                                    <SwipeItems Mode="Execute">
+                                        <SwipeItem BackgroundColor="Red">
+                                            <SwipeItem.IconImageSource>
+                                                <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{x:Static helpers:IconFont.Delete}"/>
+                                            </SwipeItem.IconImageSource>
+                                        </SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid Padding="10" BackgroundColor="{x:DynamicResource NavigationPrimary}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label TextColor="White" Grid.Row="0" >
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="File name:" FontAttributes="Bold"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding Name}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label FontAttributes="Italic" TextColor="White" Grid.Row="1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Type: " FontAttributes="Bold"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding Extension}" FontAttributes="Italic"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label FontAttributes="Italic" TextColor="White" Grid.Row="2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Size (bytes): " FontAttributes="Bold"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding Length}" FontAttributes="Italic"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <Button xct:ShadowEffect.Color="Black" xct:ShadowEffect.OffsetY="12"
+                Grid.Row="0" 
+                Text="{x:Static helpers:IconFont.Attach_file}"
+                 FontFamily="{StaticResource MaterialFontFamily}"
+                FontAttributes="Bold"
+                FontSize="Large"
+                BackgroundColor="DarkGray" 
+                BorderRadius="50" 
+                TextColor="White" 
+                HorizontalOptions="End" 
+                WidthRequest="60" 
+                HeightRequest="60" 
+                Margin="0,0,20,22" 
+                Command="{Binding PickFileCommand}"
+                VerticalOptions="End"></Button>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -2,6 +2,7 @@
 using ContactBook.Core.COMMON.Interfaces;
 using ContactBook.Core.COMMON.Models;
 
+using ContactBookMobile.Helpers;
 using ContactBookMobile.Services.Intarfaces;
 using ContactBookMobile.Services.Modelos;
 using ContactBookMobile.Services.Navigation;
@@ -22,12 +23,14 @@ namespace ContactBookMobile.ViewModels
         private readonly IUsuarioManager usuarioManager;
         private readonly INavigationService navigation;
         private readonly IError error;
+        private readonly IAlert alert;
 
-        public LoginViewModel(IUsuarioManager usuarioManager, INavigationService navigation, IError error)
+        public LoginViewModel(IUsuarioManager usuarioManager, INavigationService navigation, IError error, IAlert alert)
         {
             this.usuarioManager = usuarioManager;
             this.navigation = navigation;
             this.error = error;
+            this.alert = alert;
             LoginCommand = new Command(async () => await OnLogin());
             SignInCommand = new Command(async () => await OnPushSingInView());
             this.error.SendError += Error_SendError;
@@ -61,16 +64,13 @@ namespace ContactBookMobile.ViewModels
         private async Task OnLogin()
         {
             IsBusy = true;
-            if (usuarioManager.Login(new LoginRequest() { Password = password, UserName = UserName }) is Usuario)
-            {
                 await navigation.NavigateAsync("MenuView");
-            }
-            else
-            {
-
-            }
-            Password = "";
-            UserName = "";
+            //if (usuarioManager.Login(new LoginRequest() { Password = password, UserName = UserName }) is Usuario)
+            //if (usuarioManager.Errror.ToLower().Contains("Unauthorized".ToLower()))
+            //    alert.ShowAlert("Credenciales invalidas");
+            //Password = "";
+            //UserName = "";
+            error.SendError -= Error_SendError;
             IsBusy = false;
         }
 

@@ -9,6 +9,10 @@ namespace ContactBookMobile.Services
 {
     public class Error : IError
     {
+        public Error()
+        {
+
+        }
         public event EventHandler<RequestException> OnError;
         event EventHandler<RequestException> IError.SendError
         {

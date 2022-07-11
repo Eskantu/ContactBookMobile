@@ -1,7 +1,10 @@
 ﻿using ContactBook.Core.Auth.Modelos;
+
 using ContactBookMobile.Services.Intarfaces;
 using ContactBookMobile.Services.Modelos;
+
 using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -17,7 +20,7 @@ namespace ContactBookMobile.Services
         private readonly string _endPoint;
         private readonly IError error;
 
-        public Request(string token, string endPoint,IError error)
+        public Request(string token, string endPoint, IError error)
         {
             _endPoint = endPoint;
             this.error = error;
@@ -76,22 +79,25 @@ namespace ContactBookMobile.Services
             try
             {
                 HttpResponseMessage message = client.PostAsync("Authentication/requestToken", new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json")).Result;
-                if (message.IsSuccessStatusCode)
+                Error = message.ReasonPhrase;
+                switch (message.StatusCode)
                 {
-                    return await message.Content.ReadAsStringAsync();
-
-                }
-                else
-                {
-                    Error = message.ReasonPhrase;
-                    throw new RequestException() { ErrorCode = message.StatusCode, Mensaje = Error };
+                    case System.Net.HttpStatusCode.BadRequest:
+                        throw new RequestException() { ErrorCode = message.StatusCode, Mensaje = Error };
+                    case System.Net.HttpStatusCode.Conflict:
+                        throw new RequestException() { ErrorCode = message.StatusCode, Mensaje = Error };
+                    case System.Net.HttpStatusCode.OK:
+                        return await message.Content.ReadAsStringAsync();
+                    case System.Net.HttpStatusCode.Unauthorized:
+                        return null;
+                    default:
+                        return null;
                 }
             }
             catch (RequestException exception)
             {
                 error.OnError(exception);
-                return "";
-                throw;
+                return null;
             }
         }
 

@@ -47,14 +47,14 @@ namespace ContactBookMobile
 
             //servcios para el proyecto principal
             services.AddSingleton<IToken, Token>();
-            services.AddSingleton<IError, Error>();
+            services.AddTransient<IError, Error>();
             var provider = services.BuildServiceProvider();
             var tokenService = provider.GetRequiredService<IToken>();
             var errorService = provider.GetRequiredService<IError>();
             FactoryManager factoryManager = new FactoryManager(tokenService,errorService);
             services.AddTransient<IUsuarioManager>(x => factoryManager.GetUsuarioManager());
             services.AddSingleton<INavigationService, NavigationManager>();
-
+            services.AddSingleton<IAlert, Alert>();
             //Add viewModels
             services.AddTransient<ItemsViewModel>();
             services.AddTransient<AboutViewModel>();
@@ -62,6 +62,7 @@ namespace ContactBookMobile
             services.AddTransient<SignInViewModel>();
             services.AddTransient<MenuViewFlyoutViewModel>();
             services.AddTransient<UsersViewModel>();
+            services.AddTransient<UploadFileViewModel>();
             ServiceProvider = services.BuildServiceProvider();
 
         }
